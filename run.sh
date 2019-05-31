@@ -1,3 +1,3 @@
-mpicc main.c -o sequencial-1500 -DSIZE=1500
+mpicc main.c -o paralelo -DSIZE=15 
 
-./sequencial-1500
+mpirun -np 2 ./paralelo 

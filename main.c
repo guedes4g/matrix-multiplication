@@ -34,9 +34,11 @@ int valida_multiplicacao(int i, int j, int k);
 
 int main(int argc, char *argv[])
 {
-   int i, j, k, id, p, nWorkers;
+   int i, j, k, id, p, nWorkers, offset, stop, step_size, rows;
    double elapsed_time;
    MPI_Status status;
+   stop = offset = 0;
+   rows = SIZE;
 
    MPI_Init(&argc, &argv);
    MPI_Comm_size(MPI_COMM_WORLD, &p);
@@ -44,44 +46,64 @@ int main(int argc, char *argv[])
    nWorkers = p-1;
 
    printf("id: %d, p:%d\n", id, p);
-   fflush(stdin);
+   fflush(stdout);
 
    // Escravo
    if (id != 0)
    {
+      printf("HERE-1\n");fflush(stdout);
       MPI_Recv(&m2, SIZE*SIZE, MPI_INT, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD, &status);
-      
-      for(i = 0; i < SIZE; i++){
-         for (k = 0; k < SIZE; k++)
-         {
-            printf("%d", m2[i][k]);  
-         }
-         printf("\n");   fflush(stdin);
-      }
 
+      printf("HERE\n");fflush(stdout);
+      while(1){
+         printf("HERE1\n");fflush(stdout);
+         MPI_Recv(&stop, 1, MPI_INT, MPI_ANY_SOURCE, 2, MPI_COMM_WORLD, &status);
+         printf("HERE1.1\n");fflush(stdout);
+         if(stop) break;
+
+         MPI_Recv(&offset, 1, MPI_INT, MPI_ANY_SOURCE, 3, MPI_COMM_WORLD, &status);
+         MPI_Recv(&step_size, 1, MPI_INT, MPI_ANY_SOURCE, 4, MPI_COMM_WORLD, &status);
+         MPI_Recv(&m1[offset][0], step_size*SIZE, MPI_DOUBLE, MPI_ANY_SOURCE, 5, MPI_COMM_WORLD, &status);
+
+         printf("stop: %d, offset: %d, step_size: %d, id: %d", stop, offset, step_size, id);fflush(stdout);
+      }
+      printf("STOP\n"); fflush(stdout);
       MPI_Finalize();
       exit(0);
    } // Mestre
    else
    {
-      printf("nWorkers %d", nWorkers);fflush(stdin);
+      printf("nWorkers %d", nWorkers);fflush(stdout);
       inicializa_matriz(i, j, k);
 
       // PREPARA PARA MEDIR TEMPO
       elapsed_time = -MPI_Wtime();
 
-      for(i = 0; i < SIZE; i++){
-         for (k = 0; k < SIZE; k++)
-         {
-            printf("  %d", m2[i][k]);  
-         }
-         printf("\n");   fflush(stdin);
-      }
-
       for(i = 1; i <= nWorkers; i++){
-         printf("Sending to %d", nWorkers);fflush(stdin);
+         printf("Sending to %d\n", i);fflush(stdout);
          MPI_Send(&m2, SIZE*SIZE, MPI_INT, i, 1, MPI_COMM_WORLD);
       }
+
+      while(rows > 0) {
+         for(i = 1; i <= nWorkers; i++){
+            step_size = i == 1 ? 15 : 16;
+            step_size = step_size > rows ? rows : step_size;
+            printf("Sending to %d, step %d\n", i, step_size);fflush(stdout);
+            MPI_Send(&stop, 1, MPI_INT, i, 2, MPI_COMM_WORLD);
+            printf("--> Sent to %d, step %d\n", i, step_size);fflush(stdout);
+            MPI_Send(&offset, 1, MPI_INT, i, 3, MPI_COMM_WORLD);
+            MPI_Send(&step_size, 1, MPI_INT, i, 4, MPI_COMM_WORLD);
+            MPI_Send(&m1[offset][0], step_size*SIZE, MPI_INT ,i,5, MPI_COMM_WORLD);
+            offset = offset + step_size;
+            rows   = rows - step_size;
+            if(rows <= 0) break;
+         }
+      }
+      stop = 1;
+      for(i = 1; i <= nWorkers; i++){
+         MPI_Send(&stop, 1, MPI_INT, i, 2, MPI_COMM_WORLD);
+      }
+
       MPI_Finalize();
       return 0;
       multiplica_matriz(i, j, k);

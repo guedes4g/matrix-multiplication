@@ -64,8 +64,17 @@ int main(int argc, char *argv[])
          MPI_Recv(&offset, 1, MPI_INT, MPI_ANY_SOURCE, 3, MPI_COMM_WORLD, &status);
          MPI_Recv(&step_size, 1, MPI_INT, MPI_ANY_SOURCE, 4, MPI_COMM_WORLD, &status);
          MPI_Recv(&m1[offset][0], step_size*SIZE, MPI_DOUBLE, MPI_ANY_SOURCE, 5, MPI_COMM_WORLD, &status);
+         
+         
+         multiplica_matriz(i, j, k, offset,  step_size);
+
+         MPI_Send(&offset, 1, MPI_INT, i, 3, MPI_COMM_WORLD);
+         MPI_Send(&step_size, 1, MPI_INT, i, 4, MPI_COMM_WORLD);
+         MPI_Send(&m1[offset][0], step_size*SIZE, MPI_INT ,i, 5, MPI_COMM_WORLD);
 
          printf("stop: %d, offset: %d, step_size: %d, id: %d", stop, offset, step_size, id);fflush(stdout);
+
+         
       }
       printf("STOP\n"); fflush(stdout);
       MPI_Finalize();
@@ -88,9 +97,7 @@ int main(int argc, char *argv[])
          for(i = 1; i <= nWorkers; i++){
             step_size = i == 1 ? 15 : 16;
             step_size = step_size > rows ? rows : step_size;
-            printf("Sending to %d, step %d\n", i, step_size);fflush(stdout);
             MPI_Send(&stop, 1, MPI_INT, i, 2, MPI_COMM_WORLD);
-            printf("--> Sent to %d, step %d\n", i, step_size);fflush(stdout);
             MPI_Send(&offset, 1, MPI_INT, i, 3, MPI_COMM_WORLD);
             MPI_Send(&step_size, 1, MPI_INT, i, 4, MPI_COMM_WORLD);
             MPI_Send(&m1[offset][0], step_size*SIZE, MPI_INT ,i,5, MPI_COMM_WORLD);
@@ -122,9 +129,9 @@ int main(int argc, char *argv[])
    }
 }
 
-int multiplica_matriz(int i, int j, int k)
+int multiplica_matriz(int i, int j, int k, int offset, int step_size)
 {
-   for (i = 0; i < lres; i++)
+   for (i = offset; i < step_size; i++)
    {
       for (j = 0; j < cres; j++)
       {

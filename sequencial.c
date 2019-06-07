@@ -76,20 +76,24 @@ int main(int argc, char *argv[]) {
           if (i % 2 ==0) {
              if (j % 2 == 0) {
                 if (mres[i][j]!=k_col)
+                   MPI_Finalize(); 
                    return 1;
              }
              else {
                 if (mres[i][j]!=-k_col)
+                   MPI_Finalize(); 
                    return 1;
              }
           }
           else {
              if (j % 2 == 0) {
                 if (mres[i][j]!=-k_col)
+                   MPI_Finalize(); 
                    return 1;
              }
              else {
                 if (mres[i][j]!=k_col)
+                   MPI_Finalize(); 
                    return 1;
              }
           }

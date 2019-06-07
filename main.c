@@ -1,7 +1,3 @@
-// Arquivo: sequencial.c
-// Autor    Roland Teodorowitsch
-// Data:    28 ago. 2019
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <mpi.h>
@@ -10,18 +6,17 @@
 int m1[SIZE][SIZE], m2[SIZE][SIZE], mres[SIZE][SIZE];
 int l1, c1, l2, c2, lres, cres;
 
-int multiplica_matriz(int i, int j, int k);
 int inicializa_matriz(int i, int j, int k);
+int multiplica_matriz(int i, int j, int k);
 int valida_multiplicacao(int i, int j, int k);
 
-
-
+// comunicacao entre os processos:
 // MPI_Send(
 //     void* data,
-//     int count,
-//     MPI_Datatype datatype,
-//     int destination,
-//     int tag,
+//     int count,  // numero de elementos a enviar
+//     MPI_Datatype datatype, // tipo dos elementos a serem enviados
+//     int destination, // identificador do processo destino
+//     int tag,  // etiqueta da mensagem
 //     MPI_Comm communicator)
 // MPI_Recv(
 //     void* data,
@@ -36,19 +31,19 @@ int main(int argc, char *argv[])
 {
    int i, j, k, id, p, nWorkers, offset, stop, step_size, rows;
    double elapsed_time;
-   MPI_Status status;
+   MPI_Status status; // estrutura que guarda o estado de retorno  
    stop = offset = 0;
    rows = SIZE;
 
-   MPI_Init(&argc, &argv);
-   MPI_Comm_size(MPI_COMM_WORLD, &p);
-   MPI_Comm_rank(MPI_COMM_WORLD, &id);
+   MPI_Init(&argc, &argv); // inicializa o MPI, recebe o endereço dos parâmetros da função main()
+   MPI_Comm_size(MPI_COMM_WORLD, &p); // pega informacao do numero de processos em execucao (quantidade total)
+   MPI_Comm_rank(MPI_COMM_WORLD, &id);  // pega o identificador do processo atual (rank)
    nWorkers = p-1;
 
    printf("id: %d, p:%d\n", id, p);
    fflush(stdout);
 
-   // Escravo
+   // Escravo (vai utilizar openMP)
    if (id != 0)
    {
       printf("HERE-1\n");fflush(stdout);
@@ -79,7 +74,8 @@ int main(int argc, char *argv[])
       printf("STOP\n"); fflush(stdout);
       MPI_Finalize();
       exit(0);
-   } // Mestre
+   } 
+   // Mestre
    else
    {
       printf("nWorkers %d", nWorkers);fflush(stdout);
@@ -102,7 +98,7 @@ int main(int argc, char *argv[])
             MPI_Send(&step_size, 1, MPI_INT, i, 4, MPI_COMM_WORLD);
             MPI_Send(&m1[offset][0], step_size*SIZE, MPI_INT ,i,5, MPI_COMM_WORLD);
             offset = offset + step_size;
-            rows   = rows - step_size;
+            rows = rows - step_size;
             if(rows <= 0) break;
          }
       }
@@ -111,8 +107,8 @@ int main(int argc, char *argv[])
          MPI_Send(&stop, 1, MPI_INT, i, 2, MPI_COMM_WORLD);
       }
 
-      MPI_Finalize();
-      return 0;
+      /*MPI_Finalize();
+      return 0;*/
       multiplica_matriz(i, j, k);
 
       // OBTEM O TEMPO

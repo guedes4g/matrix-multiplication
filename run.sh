@@ -1,3 +1,3 @@
-mpicc main.c -o paralelo -DSIZE=15 
+mpicc main.c -o paralelo -fopenmp -DSIZE=1500
 
-mpirun -np 2 ./paralelo 
+mpirun -np 4 ./paralelo

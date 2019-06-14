@@ -1,0 +1,46 @@
+#!/bin/bash
+
+#PBS -m abe
+#PBS -V
+#PBS -l nodes=1:ppn=16:cluster-Grad,walltime=24:00:00
+#PBS -M larissa.martins@edu.pucrs.br
+#PBS -r n
+#PBS -j oe
+#PBS -d /home/pp12707/matrix-multiplication
+
+################
+echo Running on host `hostname`
+echo
+echo Initial Time is `date`
+echo
+echo Directory is `pwd`
+echo
+echo This jobs runs on the following nodes:
+echo `cat $PBS_NODEFILE | uniq`
+echo
+echo JOB_ID:
+echo `echo $PBS_JOBID`
+echo ################
+
+################
+
+ONEHOST=`cat $PBS_NODEFILE | uniq | head -n 1`
+TWOHOSTS=`cat $PBS_NODEFILE| uniq | head -n 2 | tr -s '\n' ',' | sed 's/,*$//'`
+THREEHOSTS=`cat $PBS_NODEFILE| uniq | head -n 3 | tr -s '\n' ',' | sed 's/,*$//'`
+FOURHOSTS=`cat $PBS_NODEFILE| uniq | head -n 4 | tr -s '\n' ',' | sed 's/,*$//'`
+
+
+echo "--------------------"
+for i in {100..2000..100}
+    do 
+        mpicc main.c -o paralelo-$i -fopenmp -DSIZE=$i
+    done
+
+for i in {100..2000..100}
+    do 
+        mpirun --bynode -host $ONEHOST -np 2 paralelo-$i
+    done
+echo "--------------------"
+################
+echo Final Time is `date`
+

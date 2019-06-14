@@ -1,0 +1,216 @@
+--------------------------------------
+Running PBS prologue script
+
+Checking all prerequisites...
+Done.
+
+Running on host grad02
+
+Initial Time is Thu Jun 13 21:00:16 BRT 2019
+
+Directory is /home/pp12707/matrix-multiplication
+
+This jobs runs on the following nodes:
+grad02 grad04 grad03
+
+JOB_ID:
+120410
+
+--------------------
+--------------------------------------------------------------------------
+mpirun was unable to launch the specified application as it could not find an executable:
+
+Executable: paralelo-100
+Node: grad03
+
+while attempting to start process rank 2.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun was unable to launch the specified application as it could not find an executable:
+
+Executable: paralelo-200
+Node: grad03
+
+while attempting to start process rank 2.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun was unable to launch the specified application as it could not find an executable:
+
+Executable: paralelo-300
+Node: grad03
+
+while attempting to start process rank 2.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun was unable to launch the specified application as it could not find an executable:
+
+Executable: paralelo-400
+Node: grad03
+
+while attempting to start process rank 2.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun was unable to launch the specified application as it could not find an executable:
+
+Executable: paralelo-500
+Node: grad04
+
+while attempting to start process rank 1.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun was unable to launch the specified application as it could not find an executable:
+
+Executable: paralelo-600
+Node: grad03
+
+while attempting to start process rank 2.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun was unable to launch the specified application as it could not find an executable:
+
+Executable: paralelo-700
+Node: grad04
+
+while attempting to start process rank 1.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun was unable to launch the specified application as it could not find an executable:
+
+Executable: paralelo-800
+Node: grad04
+
+while attempting to start process rank 1.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun was unable to launch the specified application as it could not find an executable:
+
+Executable: paralelo-900
+Node: grad04
+
+while attempting to start process rank 1.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun was unable to launch the specified application as it could not find an executable:
+
+Executable: paralelo-1000
+Node: grad03
+
+while attempting to start process rank 2.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun was unable to launch the specified application as it could not find an executable:
+
+Executable: paralelo-1100
+Node: grad04
+
+while attempting to start process rank 1.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun was unable to launch the specified application as it could not find an executable:
+
+Executable: paralelo-1200
+Node: grad04
+
+while attempting to start process rank 1.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun was unable to launch the specified application as it could not find an executable:
+
+Executable: paralelo-1300
+Node: grad04
+
+while attempting to start process rank 1.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun was unable to launch the specified application as it could not find an executable:
+
+Executable: paralelo-1400
+Node: grad04
+
+while attempting to start process rank 1.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun was unable to launch the specified application as it could not find an executable:
+
+Executable: paralelo-1500
+Node: grad04
+
+while attempting to start process rank 1.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun was unable to launch the specified application as it could not find an executable:
+
+Executable: paralelo-1600
+Node: grad04
+
+while attempting to start process rank 1.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun was unable to launch the specified application as it could not find an executable:
+
+Executable: paralelo-1700
+Node: grad04
+
+while attempting to start process rank 1.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun was unable to launch the specified application as it could not find an executable:
+
+Executable: paralelo-1800
+Node: grad04
+
+while attempting to start process rank 1.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun was unable to launch the specified application as it could not find an executable:
+
+Executable: paralelo-1900
+Node: grad04
+
+while attempting to start process rank 1.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun was unable to launch the specified application as it could not find an executable:
+
+Executable: paralelo-2000
+Node: grad04
+
+while attempting to start process rank 1.
+--------------------------------------------------------------------------
+--------------------
+Final Time is Thu Jun 13 21:00:22 BRT 2019
+
+--------------------------------------
+Running PBS epilogue.user script
+
+End of PBS epilogue.user script
+
+--------------------------------------
+Running PBS epilogue script
+
+Disabling access of user pp12707 on the batch nodes
+Doing node grad02
+
+ -- Killing all stale user  processes... done.
+ -- Cleaning-up any shmemory segments... done.
+Doing node grad03
+
+ -- Killing all stale user  processes... done.
+ -- Cleaning-up any shmemory segments... done.
+Doing node grad04
+
+ -- Killing all stale user  processes... done.
+ -- Cleaning-up any shmemory segments... done.
+
+Done.
+
+Resources used:
+
+ -- CPU TIME     = 00:00:02 
+
+ -- MEMORY       = 73504kb 
+
+ -- VIRTUAL MEM  = 2121288kb 
+
+ -- ELAPSED TIME = 00:00:07 
+

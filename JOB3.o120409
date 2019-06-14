@@ -1,0 +1,96 @@
+--------------------------------------
+Running PBS prologue script
+
+Checking all prerequisites...
+Done.
+
+Running on host grad02
+
+Initial Time is Thu Jun 13 20:59:23 BRT 2019
+
+Directory is /home/pp12707/matrix-multiplication
+
+This jobs runs on the following nodes:
+grad02 grad04 grad03
+
+JOB_ID:
+120409
+
+--------------------
+Correct;processes;time;
+True;4;0.010867;
+Correct;processes;time;
+True;4;0.024531;
+Correct;processes;time;
+True;4;0.038242;
+Correct;processes;time;
+True;4;0.075212;
+Correct;processes;time;
+True;4;0.105681;
+Correct;processes;time;
+True;4;0.168427;
+Correct;processes;time;
+True;4;0.227053;
+Correct;processes;time;
+True;4;0.391448;
+Correct;processes;time;
+True;4;0.457632;
+Correct;processes;time;
+True;4;0.619028;
+Correct;processes;time;
+True;4;0.805547;
+Correct;processes;time;
+True;4;1.011567;
+Correct;processes;time;
+True;4;1.317760;
+Correct;processes;time;
+True;4;1.612073;
+Correct;processes;time;
+True;4;1.986472;
+Correct;processes;time;
+True;4;3.096998;
+Correct;processes;time;
+True;4;3.055396;
+Correct;processes;time;
+True;4;3.502655;
+Correct;processes;time;
+True;4;4.274707;
+Correct;processes;time;
+True;4;4.626350;
+--------------------
+Final Time is Thu Jun 13 21:00:07 BRT 2019
+
+--------------------------------------
+Running PBS epilogue.user script
+
+End of PBS epilogue.user script
+
+--------------------------------------
+Running PBS epilogue script
+
+Disabling access of user pp12707 on the batch nodes
+Doing node grad02
+
+ -- Killing all stale user  processes... done.
+ -- Cleaning-up any shmemory segments... done.
+Doing node grad03
+
+ -- Killing all stale user  processes... done.
+ -- Cleaning-up any shmemory segments... done.
+Doing node grad04
+
+ -- Killing all stale user  processes... done.
+ -- Cleaning-up any shmemory segments... done.
+
+Done.
+
+Resources used:
+
+ -- CPU TIME     = 00:00:39 
+
+ -- MEMORY       = 38280kb 
+
+ -- VIRTUAL MEM  = 729376kb 
+
+ -- ELAPSED TIME = 00:00:45 
+

@@ -1,0 +1,100 @@
+--------------------------------------
+Running PBS prologue script
+
+Checking all prerequisites...
+Done.
+
+Running on host grad02
+
+Initial Time is Thu Jun 13 20:57:55 BRT 2019
+
+Directory is /home/pp12707/matrix-multiplication
+
+This jobs runs on the following nodes:
+grad02 grad05 grad04 grad03
+
+JOB_ID:
+120406
+
+--------------------
+Correct;processes;time;
+True;5;0.008517;
+Correct;processes;time;
+True;5;0.020452;
+Correct;processes;time;
+True;5;0.030865;
+Correct;processes;time;
+True;5;0.061370;
+Correct;processes;time;
+True;5;0.087402;
+Correct;processes;time;
+True;5;0.136665;
+Correct;processes;time;
+True;5;0.187897;
+Correct;processes;time;
+True;5;0.306291;
+Correct;processes;time;
+True;5;0.369022;
+Correct;processes;time;
+True;5;0.478283;
+Correct;processes;time;
+True;5;0.635377;
+Correct;processes;time;
+True;5;0.780050;
+Correct;processes;time;
+True;5;1.011110;
+Correct;processes;time;
+True;5;1.313537;
+Correct;processes;time;
+True;5;1.581947;
+Correct;processes;time;
+True;5;2.399512;
+Correct;processes;time;
+True;5;2.303532;
+Correct;processes;time;
+True;5;2.822855;
+Correct;processes;time;
+True;5;3.253502;
+Correct;processes;time;
+True;5;3.505062;
+--------------------
+Final Time is Thu Jun 13 20:58:28 BRT 2019
+
+--------------------------------------
+Running PBS epilogue.user script
+
+End of PBS epilogue.user script
+
+--------------------------------------
+Running PBS epilogue script
+
+Disabling access of user pp12707 on the batch nodes
+Doing node grad02
+
+ -- Killing all stale user  processes... done.
+ -- Cleaning-up any shmemory segments... done.
+Doing node grad03
+
+ -- Killing all stale user  processes... done.
+ -- Cleaning-up any shmemory segments... done.
+Doing node grad04
+
+ -- Killing all stale user  processes... done.
+ -- Cleaning-up any shmemory segments... done.
+Doing node grad05
+
+ -- Killing all stale user  processes... done.
+ -- Cleaning-up any shmemory segments... done.
+
+Done.
+
+Resources used:
+
+ -- CPU TIME     = 00:00:39 
+
+ -- MEMORY       = 11904kb 
+
+ -- VIRTUAL MEM  = 224528kb 
+
+ -- ELAPSED TIME = 00:00:35 
+
